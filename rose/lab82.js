@@ -7,44 +7,48 @@ class Employeer
       this.experience=experience;
        this.baseSalary=baseSalary;
     }
-  
-}
-
-class Depart extends Employeer
-{
     GetSalary()
     {
         if( this.experience<5 && this.experience>=2)
         {
             this.earn=(this.baseSalary+200);
-            console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
         }
         else if(this.experience>=5) 
       {
         this.earn=((this.baseSalary*1.2)+500);
-        console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
       }
      
     }
-    return;
 }
-class Develop extends Depart
+
+
+class Departtament 
+{
+    constructor(params)
+    {
+        this.name= params.name;
+       this.earn=params.earn;
+    }
+
+     givesalary()
+    {
+            console.log(   this.name+ " got "  +this.earn +" salary");
+         
+      }
+      
+      }
+       
+    
+    
+class Develop extends Employeer
 {
     constructor( name,lastName,experience,baseSalary,count)
   {
-      super(name,lastName,experience,baseSalary);
-      this.count=0;
+      super(name,lastName,experience,baseSalary); 
   }
-  
-   GetSalary1()
-  {
-      super.GetSalary();
-  }
- 
-
  return;
 }
- class Design extends Depart
+ class Design extends Employeer
  {
   
   constructor( name,lastName,experience,baseSalary,effcoef)
@@ -56,19 +60,17 @@ GetSalary()
 {
     if( this.experience<5 && this.experience>=2)
         {
-            this.earn=(this.baseSalary+200);
-            console.log(this.name+" "+this.lastName+" "+" got " + (this.earn*this.effcoef)+" salary" )
+            this.earn=(this.baseSalary+200)*this.effcoef;
         }
         else if(this.experience>=5)
       {
-        this.earn=((this.baseSalary*1.2)+500);
-        console.log(this.name+" "+this.lastName+" "+" got " + (this.earn*this.effcoef) +" salary" )
-      }
+        this.earn=((this.baseSalary*1.2)+500)*this.effcoef;
+    }
 }   
  return;
  
 }
-class Managers extends Depart
+class Managers extends Employeer
 {
     constructor( name,lastName,experience,baseSalary,team,count)
   {
@@ -80,71 +82,45 @@ class Managers extends Depart
     GetSalary()
     {
          
-        if (this.team >= 10 && this.experience<5 && this.experience>=2) {
-            this.earn =(this.baseSalary+200) + 300;
-            console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
-        } 
-        else if (this.team>= 5 && this.experience<5 && this.experience>=2) {
-            this.earn(this.baseSalary+200) + 200;
-            console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
-        }
-        else if(this.team >= 10  &&this.experience>=5 )
+        if (this.team.lenght >= 10 && this.experience<5 && this.experience>=2) {
+            this.earn =(this.baseSalary+200) + 300; } 
+        else if (this.team.lenght>= 5 && this.experience<5 && this.experience>=2) {
+            this.earn(this.baseSalary+200) + 200;}
+        else if(this.team.lenght >= 10  &&this.experience>=5 )
         {
-            this.earn=((this.baseSalary*1.2)+500) + 300;
-            console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
-        }
+            this.earn=((this.baseSalary*1.2)+500) + 300; }
         else{
-            this.earn=((this.baseSalary*1.2)+500) + 200;
-            console.log(this.name+" "+this.lastName+" "+" got " + this.earn +" salary" )
-        }
+            this.earn=((this.baseSalary*1.2)+500) + 200; }
      
-       if (this.count > (this.team / 2)) {
+       if (this.count > (this.team.lenght / 2)) {
            this.earn =  this.earn* 1.1;
         }
     }
     return;
 }
-let counter=0;
-let c=0;
-for (let i=0;i<6;i++)
-{
-    if(i=1)
-    {
-        let person= new Develop("Vika","Kovalenko",4,1000);
-        person.GetSalary1(); 
-        counter++;
-        c++;
+
+function main(){
+
+
+
+    const person= new Develop("Vika","Kovalenko",4,1000);
+        person.GetSalary();   
+     const  person2= new Develop("Fifi","Yeldis",7,1000);
+        person2.GetSalary();
+      const  person3= new Develop("Kiril","Kukol",2,1000);
+        person3.GetSalary();  
+      const person4= new Design("Pavel","Ryseckiy ", 15,1000,0.5);
+        person4.GetSalary();
+        const  person5= new Design("Sophia","Crem ", 9,1000,0.2);
+        person5.GetSalary();
+         const person6= new Managers("Nikita","Gerst ", 7,1000,[person,person2,person3,person4,person5],3);
+        person6.GetSalary();
+        var mas=[person,person2,person3,person4,person5,person6];
+        for(let i=0;i<mas.length;i++)
+        {
+            const dep=new Departtament(mas[i]);
+            dep.givesalary();
+        }   
     }
-    if(i=2)
-    {
-        person= new Develop("Fifi","Yeldis",7,1000);
-        person.GetSalary1();
-        counter++;
-        c++;
-    }
-    if(i=3)
-    {
-        person= new Develop("Kiril","Kukol",2,1000);
-        person.GetSalary1();
-        counter++;
-        c++;
-    }
-    if(i=4)
-    {
-        let person3= new Design("Pavel","Ryseckiy ", 15,1000,0.5);
-person3.GetSalary();
-        c++;
-    }
-    if(i=5)
-    {
-        person3= new Design("Sophia","Crem ", 9,1000,0.2);
-        person3.GetSalary();
-        c++;
-    }
- 
-  
-}
-//console.log(counter);
-//console.log(c);
-let person5= new Managers("Nikita","Gerst ", 7,1000,counter,c);
-person5.GetSalary();
+    main();
+    
