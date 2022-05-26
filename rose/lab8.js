@@ -1,4 +1,4 @@
-
+/*
 var Employee=function (params)
 { 
             this.name = params.name;
@@ -334,4 +334,4 @@ manag2.count();
  }
  writte6();
  manag2.text();
- manag2.CountedSalaryManager2();
+ manag2.CountedSalaryManager2();*/
